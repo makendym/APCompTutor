@@ -1,0 +1,108 @@
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .overlap-group-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .overlap-group {
+    background-image: url('/src/assets/background.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1; /* Base level for background */
+  }
+  .overlap-group::before {
+    content: ''; /* Required for pseudo-elements */
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #121212;
+    opacity: 0.7; /* 70% opacity */
+    z-index: 2; /* Adjust if necessary to ensure it's above the background image but below other content */
+  }
+  
+  .header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 4; /* Above the background */
+  }
+  
+  .white-logo {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4; /* Above the background, below the header */
+  }
+  
+  .ellipse,
+  .circles {
+    position: absolute;
+    z-index: 2; /* Above the background and the white logo */
+  }
+  
+  .ellipse {
+    background-color: rgba(18, 18, 18, 0.2);
+    border: 49px solid rgba(164, 153, 126, 0.1);
+    border-radius: 50%;
+    width: 843px;
+    height: 833px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .circles {
+    width: 745px;
+    height: 735px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Additional styles for other circle elements */
+  }
+  
+  .book-a-session-instance {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5; /* Above all other elements */
+  }
+  
+  @media (max-width: 768px) {
+    .white-logo {
+      max-width: 90%;
+    }
+  
+    .book-a-session-instance {
+      bottom: 10%;
+    }
+  
+    .ellipse,
+    .circles {
+      width: 90%; /* Adjust for smaller screens */
+      height: auto; /* Maintain aspect ratio */
+      /* Other adjustments for positioning and size */
+    }
+  }
+  

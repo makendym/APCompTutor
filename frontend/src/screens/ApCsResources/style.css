@@ -1,0 +1,101 @@
+.services-container {
+  background-size: cover; /* Cover the entire space */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-attachment: fixed; /* Fixed background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  position: relative; /* Overlay other content */
+  height: 100%; /* Full height of the viewport */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  z-index: 0;
+}
+
+.services-title {
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 70px;
+  z-index: 2;
+}
+
+.services-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 100%; /* Adjust to make sure it doesn't exceed viewport width */
+  overflow: hidden; /* Hide any content that exceeds the container */
+}
+
+.service-section {
+  background-color: rgba(18, 18, 18, 0.8); /* Adjust the alpha value (0.8 in this example) for transparency */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-title {
+  color: #ffffff;
+  padding: 30px;
+  text-align: center;
+}
+
+.service-description {
+  color: #ffffff;
+  padding: 30px;
+  text-align: center;
+}
+.images-container {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.images-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  z-index: 1; /* Below the content of .images-container but above the image itself */
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+  z-index: 0; /* Ensure the image is below the pseudo-element */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .service-section {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .service-section {
+    width: 100%;
+  }
+  .services-container {
+    width: 100%;
+    padding: 20px; /* Adjust padding as needed for smaller screens */
+  }
+  .services-title {
+    padding: 20px; /* Adjust padding as needed for smaller screens */
+    font-size: 24px; /* Adjust the font size as desired */
+  }
+}

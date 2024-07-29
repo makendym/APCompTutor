@@ -1,0 +1,18 @@
+.signup-container {
+  background-image: url("/src/assets/constant.png");
+  background-size: cover; /* Cover the entire space */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-attachment: relative; /* Relative background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  position: relative; /* Overlay other content */
+  width: 100%; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  overflow-x: hidden; /* Hide horizontal overflow */
+  z-index: 0;
+}
+
