@@ -10,12 +10,16 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Editor from "@monaco-editor/react";
+import { ResizableBox } from "react-resizable";
 import "./style.css";
+import "./resizable.css";
 
 export const ChatGPT = () => {
   const [prompt, setPrompt] = useState("");
   const [questionData, setQuestionData] = useState(null);
   const [editorKey, setEditorKey] = useState(Date.now());
+  const [leftWidth, setLeftWidth] = useState(400);
+  const [editorHeight, setEditorHeight] = useState(400);
 
   useEffect(() => {
     if (questionData) {
@@ -44,32 +48,15 @@ export const ChatGPT = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Submitting prompt:", prompt);
-  
     try {
       const res = await axios.post("http://localhost:8000/chat", { prompt });
-      console.log("Received response:", res);
-  
       if (res.data && res.data.parsedResponse) {
-        console.log("Response data:", res.data.parsedResponse);
-        const parsedData = res.data.parsedResponse;
-        setQuestionData(parsedData);
-      } else {
-        console.log("Response data is empty or undefined");
+        setQuestionData(res.data.parsedResponse);
       }
     } catch (err) {
       console.error("Error:", err);
     }
   };
-  
-
-  function handleEditorChange(value, event) {
-    console.log("here is the current model value:", value);
-  }
-
-  // useEffect(() => {
-  //   const editorValue = formatQuestionData(questionData);
-  // }, [questionData]);
 
   return (
     <Box className="contact-us-container">
@@ -84,12 +71,24 @@ export const ChatGPT = () => {
           alignItems: "center",
         }}
       >
-        <Grid container spacing={2} style={{ height: "70vh" }}>
-          <Grid
-            item
-            xs={12}
-            md={4}
-            style={{ display: "flex", flexDirection: "column", height: "100%" }}
+        <Box style={{ height: "70vh", width: "100%", display: "flex", gap: "10px" }}>
+          <ResizableBox
+            width={leftWidth}
+            height={Infinity}
+            minConstraints={[300, Infinity]}
+            maxConstraints={[1200, Infinity]}
+            onResizeStop={(e, data) => setLeftWidth(data.size.width)}
+            axis="x"
+            handle={
+              <div className="react-resizable-handle react-resizable-handle-e" />
+            }
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              position: "relative",
+              flexShrink: 0,
+            }}
           >
             <Paper
               style={{
@@ -102,6 +101,7 @@ export const ChatGPT = () => {
                 flexDirection: "column",
                 justifyContent: "space-between",
                 height: "100%",
+                width: "100%",
               }}
             >
               <Box
@@ -144,43 +144,62 @@ export const ChatGPT = () => {
                 </Box>
               </Box>
             </Paper>
-          </Grid>
-          <Grid item xs={12} md={8} style={{ height: "100%", display: "flex", flexDirection: "column" }}>
-            <Paper
+          </ResizableBox>
+
+          <Box style={{ flex: 1, display: "flex", flexDirection: "column", height: "100%", position: "relative", minWidth: "300px" }}>
+            <ResizableBox
+              width={Infinity}
+              height={editorHeight}
+              minConstraints={[Infinity, 200]}
+              maxConstraints={[Infinity, 600]}
+              onResizeStop={(e, data) => setEditorHeight(data.size.height)}
+              axis="y"
+              handle={
+                <div className="react-resizable-handle react-resizable-handle-s" />
+              }
               style={{
-                height: "80%",
-                border: "1px solid #ffffff",
-                borderRadius: "8px",
-                overflow: "hidden",
                 display: "flex",
                 flexDirection: "column",
+                width: "100%",
+                position: "relative",
               }}
             >
-              <Box
-                sx={{
-                  padding: "8px 16px ",
-                  backgroundColor: "#282c34",
-                  borderBottom: "1px solid #ffffff",
+              <Paper
+                style={{
+                  height: "100%",
+                  border: "1px solid #ffffff",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                <Typography variant="h6" style={{ color: "white" }}>
-                  Code
-                </Typography>
-              </Box>
-              <Editor
-                key={editorKey}
-                height="100%"
-                theme="vs-dark"
-                defaultLanguage="java"
-                defaultValue={
-                  questionData
-                    ? formatQuestionData(questionData)
-                    : "// some comment"
-                }
-                onChange={handleEditorChange}
-              />
-            </Paper>
-            <Box mt={2} style={{ width: "100%" }}>
+                <Box
+                  sx={{
+                    padding: "8px 16px ",
+                    backgroundColor: "#282c34",
+                    borderBottom: "1px solid #ffffff",
+                  }}
+                >
+                  <Typography variant="h6" style={{ color: "white" }}>
+                    Code
+                  </Typography>
+                </Box>
+                <Editor
+                  key={editorKey}
+                  height="100%"
+                  theme="vs-dark"
+                  defaultLanguage="java"
+                  defaultValue={
+                    questionData
+                      ? formatQuestionData(questionData)
+                      : "// some comment"
+                  }
+                />
+              </Paper>
+            </ResizableBox>
+
+            <Box style={{ width: "100%", marginTop: "10px", flex: 1 }}>
               <Paper
                 style={{
                   padding: 20,
@@ -188,6 +207,7 @@ export const ChatGPT = () => {
                   border: "1px solid #ffffff",
                   borderRadius: "8px",
                   width: "100%",
+                  height: "100%",
                 }}
               >
                 <Typography variant="h6" style={{ color: "white" }}>
@@ -246,8 +266,8 @@ export const ChatGPT = () => {
                 </form>
               </Paper>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

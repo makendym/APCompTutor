@@ -1,0 +1,74 @@
+.react-resizable {
+  position: relative;
+}
+
+.react-resizable-handle {
+  position: absolute;
+  z-index: 10;
+}
+
+.react-resizable-handle-w,
+.react-resizable-handle-e {
+  top: 50%;
+  margin-top: -10px;
+  cursor: ew-resize;
+  width: 80px;
+  height: 80px;
+}
+
+.react-resizable-handle-w {
+  left: -15px;
+}
+
+.react-resizable-handle-e {
+  right: -15px;
+}
+
+.react-resizable-handle-n,
+.react-resizable-handle-s {
+  left: 50%;
+  margin-left: -40px;
+  cursor: ns-resize;
+  width: 80px;
+  height: 30px;
+}
+
+.react-resizable-handle-n {
+  top: -15px;
+}
+
+.react-resizable-handle-s {
+  bottom: -32px;
+}
+
+.react-resizable-handle-e::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 80px;
+  background-color: #666;
+  border-radius: 2px;
+}
+
+.react-resizable-handle-e:hover::after {
+  background-color: #999;
+}
+
+.react-resizable-handle-s::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 13px;
+  width: 80px;
+  height: 4px;
+  background-color: #666;
+  border-radius: 2px;
+}
+
+.react-resizable-handle-s:hover::after {
+  background-color: #999;
+} 

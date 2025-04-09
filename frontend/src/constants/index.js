@@ -2,7 +2,7 @@ import { aboutUs, transparentLogo, practiceProblems, teacher, boyStudying } from
 export const NAV_LINKS = [
   { title: "Home", path: "/" },
   { title: "Services", path: "/services" },
-  { title: "AP CS", path: "/ap-cs" },
+  { title: "AP CS", path: "/chatgpt" },
   { title: "About Us", path: "/about-us" },
   { title: "Contact", path: "/contact-us" },
 ];
@@ -11,7 +11,7 @@ export const DRAWER_LINKS = [
   { title: "Home", path: "/" },
   { title: "Services", path: "/services" },
   { title: "About Us", path: "/about-us" },
-  { title: "AP CS", path: "/ap-cs" },
+  { title: "AP CS", path: "/chatgpt" },
   { title: "Contact", path: "/contact-us" },
 ];
 

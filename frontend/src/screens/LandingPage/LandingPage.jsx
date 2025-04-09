@@ -2,17 +2,21 @@ import React from "react";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import { Header } from "../../components/Header";
-import { BookASession } from "../../components/BookASession";
-import { Services } from "../Services";
-import { MeetYourTutor } from "../MeetYourTutor";
-import { ApCsResources } from "../ApCsResources";
+import {Header} from "../../components/Header";
+import {BookASession} from "../../components/BookASession";
+import {Services} from "../Services";
+import {MeetYourTutor} from "../MeetYourTutor";
+import {ApCsResources} from "../ApCsResources";
 import "./style.css";
 
 export const LandingPage = () => {
   return (
     <>
-      <Container maxWidth={false} disableGutters className="landing-page">
+      <Container
+        maxWidth={false}
+        disableGutters
+        className="landing-page"
+      >
         <Box className="overlap-group-wrapper">
           <Box className="overlap-group">
             <Header />
@@ -24,10 +28,11 @@ export const LandingPage = () => {
                 className="white-logo"
                 alt="White logo"
                 src="https://c.animaapp.com/PIXQFewP/img/white-logo-transparent-background-1.png"
+                width="50%"
               />
-            </Box>
-            <Box className="book-a-session-instance">
-              <BookASession />
+              <Box className="book-a-session-instance">
+                <BookASession />
+              </Box>
             </Box>
           </Box>
         </Box>
@@ -38,7 +43,6 @@ export const LandingPage = () => {
       <MeetYourTutor />
       <Divider variant="middle" />
       <ApCsResources />
-
     </>
   );
 };

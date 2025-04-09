@@ -46,7 +46,7 @@
   }
   
   .white-logo {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     position: absolute;
     top: 50%;
@@ -83,7 +83,7 @@
   
   .book-a-session-instance {
     position: absolute;
-    bottom: 20px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 5; /* Above all other elements */
